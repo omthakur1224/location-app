@@ -1,14 +1,40 @@
-// const stores=require('./store')
 import {stores} from './store'
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoib210aGFrdXIxMjI0IiwiYSI6ImNsNXc3azh2MDBiMXozaW56dzZub3Y5MnUifQ.12VimV4yzVRdBB0K3S919g';
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [-77.04, 38.907],
-    zoom: 12
-});
+navigator.geolocation.getCurrentPosition(successLocation,errorLocation,
+    {enableHighAccuracy:true})
+
+    function successLocation(position){
+        console.log(position)
+        setMap([position.coords.longitude, position.coords.latitude])
+    }
+
+    function errorLocation(){
+        //when location is not available it will take to menchester location
+        setMap([-2.24, 53.48])
+    }
+
+    function setMap(center){
+    
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center:center,
+      zoom:10
+    });
+// map.addControl(new mapboxgl.NavigationControl());
+// map.addControl(new mapboxgl.NavigationControl());
+
+// }
+
+
+// var map = new mapboxgl.Map({
+//     container: 'map',
+//     style: 'mapbox://styles/mapbox/streets-v11',
+//     center: [-77.04, 38.907],
+//     zoom: 12
+// });
 
 
 // Add the control to the map. (geocoder that is search input)
@@ -200,36 +226,6 @@ stores.features.forEach(function (store, i) {
     store.properties.id = i;
   });
 
-  // //building store
-  // function buildLocationList(stores) {
-  //     for (const store of stores.features) {
-  //       /* Add a new listing section to the sidebar. */
-  //       const listings = document.getElementById('listings');
-  //       const listing = listings.appendChild(document.createElement('div'));
-  //       /* Assign a unique `id` to the listing. */
-  //       listing.id = `listing-${store.properties.id}`;
-  //       /* Assign the `item` class to each listing for styling. */
-  //       listing.className = 'item';
-    
-  //       /* Add the link to the individual listing created above. */
-  //       const link = listing.appendChild(document.createElement('a'));
-  //       link.href = '#';
-  //       link.className = 'title';
-  //       link.id = `link-${store.properties.id}`;
-  //       link.innerHTML = `${store.properties.address}`;
-    
-  //       /* Add details to the individual listing. */
-  //       const details = listing.appendChild(document.createElement('div'));
-  //       details.innerHTML = `${store.properties.city}`;
-  //       if (store.properties.phone) {
-  //         details.innerHTML += ` · ${store.properties.phoneFormatted}`;
-  //       }
-  //       if (store.properties.distance) {
-  //         const roundedDistance = Math.round(store.properties.distance * 100) / 100;
-  //         details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
-  //       }
-  //     }
-  //   }
 
   map.on('load', () => {
     /* Add the data to your map as a layer */
@@ -398,36 +394,4 @@ stores.features.forEach((store, i) => {
   )
   .addTo(map);
   }
-
-
-
-
-// navigator.geolocation.getCurrentPosition(successLocation,errorLocation,
-//     {enableHighAccuracy:true})
-
-//     function successLocation(position){
-//         console.log(position)
-//         setMap([position.coords.longitude, position.coords.latitude])
-//     }
-
-//     function errorLocation(){
-//         //when location is not available it will take to menchester location
-//         setMap([-2.24, 53.48])
-//     }
-
-//     function setMap(center){
-    
-//     var map = new mapboxgl.Map({
-//       container: 'map',
-//       style: 'mapbox://styles/mapbox/streets-v11',
-//       center:center,
-//       zoom:12
-//     });
-// map.addControl(new mapboxgl.NavigationControl());
-
-
-
-
-
-
-// }
+    }
