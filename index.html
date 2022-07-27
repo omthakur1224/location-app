@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>location intelligence app</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<!-- mapbox css and script linking -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js"></script>
+
+
+<!-- Load the `mapbox-gl-geocoder` plugin. -->
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+
+<!-- custom css and script linking -->
+
+<!-- <link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="sidebar.css">
+<link rel="stylesheet" href="store.css"> -->
+<link rel="stylesheet" href="./styles/main.css">
+<link rel="stylesheet" href="./styles/sidebar.css">
+<link rel="stylesheet" href="./styles/store.css">
+<script src="/main.js" type="module"></script>
+
+</head>
+<body>
+  <div class='sidebar'>
+    <div class='heading'>
+      <h1 class="h1">Our locations</h1>
+    </div>
+    <div id='listings' class='listings'></div>
+  </div>
+  <div id='map'></div>
+  
+  <div id="menu">
+    <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" >
+    <label for="satellite-v9">satellite</label>
+    <input id="light-v10" type="radio" name="rtoggle" value="light">
+    <label for="light-v10">light</label>
+    <input id="dark-v10" type="radio" name="rtoggle" value="dark">
+    <label for="dark-v10">dark</label>
+    <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked">
+    <label for="streets-v11">streets</label>
+    <input id="outdoors-v11" type="radio" name="rtoggle" value="outdoors">
+    <label for="outdoors-v11">outdoors</label>
+  </div>
+  
+</body>
+</html>
